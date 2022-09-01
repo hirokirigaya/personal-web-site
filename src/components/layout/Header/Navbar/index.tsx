@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as Styled from "./styles";
 
@@ -39,7 +39,13 @@ const Navbar = (): JSX.Element => {
         <ul className="container-links">
           {navLinks.map((item) => {
             return (
-              <li key={item.id} className={activeLink === item.path ? "navbar-link on" : "navbar-link"}>
+              <li
+                key={item.id}
+                onClick={handleClickToggleMenu}
+                className={
+                  activeLink === item.path ? "navbar-link on" : "navbar-link"
+                }
+              >
                 <Link to={item.path}>{item.name}</Link>
               </li>
             );
@@ -69,7 +75,7 @@ const navLinks = [
   {
     id: 4,
     name: "Contato",
-    path: "/contato",
+    path: "#contato",
   },
 ];
 

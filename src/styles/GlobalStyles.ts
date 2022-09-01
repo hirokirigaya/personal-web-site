@@ -37,4 +37,14 @@ export default createGlobalStyle`
     transform: translateY(0px);
   }
 }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #1b1b1b;
+  }
+
+  ::-webkit-scrollbar {
+    background-color: #e6e6e6;
+    width: 8px;
+    height: 8px;
+  }
 `;
