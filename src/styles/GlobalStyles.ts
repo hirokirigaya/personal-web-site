@@ -27,7 +27,7 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
-  @keyframes navLinkAnimation {
+  @keyframes openAnimation {
   from {
     opacity: 0;
     transform: translateY(-50px);

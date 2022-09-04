@@ -21,6 +21,7 @@ export const FirstSection = styled.section`
     grid-template-columns: repeat(2, 1fr);
 
     .title-first-section {
+      opacity: 0;
       display: flex;
       align-items: center;
 
@@ -83,12 +84,12 @@ export const FirstSection = styled.section`
 
     a {
       svg {
-        font-size: ${({theme}) => theme.fontSizes["2xl"]};
-        color: ${({theme}) => theme.colors.text.primary};
+        font-size: ${({ theme }) => theme.fontSizes["2xl"]};
+        color: ${({ theme }) => theme.colors.text.primary};
         transition: all 200ms ease-in-out;
 
         &:hover {
-          color: ${({theme}) => theme.colors.text.secondary};
+          color: ${({ theme }) => theme.colors.text.secondary};
         }
       }
     }

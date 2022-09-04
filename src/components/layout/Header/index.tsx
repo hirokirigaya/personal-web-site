@@ -3,17 +3,18 @@ import { Navbar } from "./Navbar";
 import * as Styled from "./styles";
 
 const Header = (): JSX.Element => {
-  const [windowScroll, setWindowScroll] = useState(0);
-  const header = useRef<any>();
+  const header = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setWindowScroll(window.scrollY)
-  }, [window.scrollY])
+  window.addEventListener("scroll", () => {
+    let windowPosition = window.scrollY;
+  });
 
   return (
-    <Styled.Container ref={header}>
-      <Navbar />
-    </Styled.Container>
+    <>
+      <Styled.Container ref={header!}>
+        <Navbar />
+      </Styled.Container>
+    </>
   );
 };
 

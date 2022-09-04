@@ -13,7 +13,7 @@ const Navbar = (): JSX.Element => {
     navbarLinks.forEach((item, index) => {
       item.style.animation
         ? (item.style.animation = "")
-        : (item.style.animation = `navLinkAnimation ${
+        : (item.style.animation = `openAnimation ${
             index / 3 + 0.5
           }s ease forwards ${index / 3 + 0.3}s`);
     });

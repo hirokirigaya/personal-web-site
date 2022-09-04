@@ -58,8 +58,6 @@ export const ContainerNavgation = styled.div`
   visibility: hidden;
   transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 
-
-
   &.active {
     visibility: visible;
     position: fixed;
@@ -69,6 +67,7 @@ export const ContainerNavgation = styled.div`
     left: 0;
     transition: all 1.6s cubic-bezier(0.075, 0.82, 0.165, 1);
     background-color: ${({ theme }) => theme.colors.default.black800};
+    z-index: 887;
   }
 
   .container-links {
@@ -85,13 +84,13 @@ export const ContainerNavgation = styled.div`
       opacity: 0;
 
       a {
-        font-size: ${({ theme }) => theme.fontSizes['5xl']};
+        font-size: ${({ theme }) => theme.fontSizes["5xl"]};
         color: ${({ theme }) => theme.colors.default.white};
         text-decoration: none;
         transition: filter 200ms ease-in-out;
 
         &:hover {
-          filter: brightness(.8);
+          filter: brightness(0.8);
         }
       }
     }
@@ -100,7 +99,7 @@ export const ContainerNavgation = styled.div`
       opacity: 0;
 
       a {
-        font-size: ${({ theme }) => theme.fontSizes['5xl']};
+        font-size: ${({ theme }) => theme.fontSizes["5xl"]};
         color: ${({ theme }) => theme.colors.text.secondary};
         text-decoration: none;
         transition: filter 200ms ease-in-out;
