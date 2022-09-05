@@ -123,13 +123,78 @@ export const SecondSection = styled.section`
   }
 
   .recent-projects {
-
     width: 100%;
     display: flex;
     justify-content: space-between;
 
     .box-project {
       width: 440px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        height: 100%;
+
+        .title-project {
+          font-size: ${({ theme }) => theme.fontSizes["xl"]};
+          color: ${({ theme }) => theme.colors.text.tertiary};
+        }
+        .desc-project {
+          font-size: ${({ theme }) => theme.fontSizes["sm"]};
+          color: ${({ theme }) => theme.colors.text.secondary};
+        }
+      }
+      .link-repo {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+
+        a {
+          color: ${({ theme }) => theme.colors.text.tertiary};
+          font-size: ${({ theme }) => theme.fontSizes["2xl"]};
+          transition: all 200ms ease-in-out;
+          display: flex;
+
+          svg {
+            color: ${({ theme }) => theme.colors.text.tertiary};
+            font-size: ${({ theme }) => theme.fontSizes["2xl"]};
+          }
+
+          &:hover {
+            transform: rotate(-10deg);
+          }
+        }
+      }
+    }
+  }
+
+  .more-projects {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    a {
+      color: ${({ theme }) => theme.colors.text.primary};
+      font-size: ${({ theme }) => theme.fontSizes["xl"]};
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: all 200ms ease-in-out;
+      gap: 0.2rem;
+
+      svg {
+        transition: all 200ms ease-in-out;
+      }
+      
+      &:hover {
+        svg {
+          transform: rotate(-10deg);
+        }
+      }
     }
   }
 `;

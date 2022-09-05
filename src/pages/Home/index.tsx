@@ -1,7 +1,8 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card } from "../../components/reusable/card";
 import {
   FiArrowDown,
+  FiArrowRight,
   FiGithub,
   FiLinkedin,
   FiMail,
@@ -10,6 +11,8 @@ import {
 import * as Styled from "./styles";
 import { Link } from "react-router-dom";
 import ScrollReveal from "scrollreveal";
+import GitHubService from "../../services/GitHubService";
+import { GithubRepositoryInterface } from "../../interfaces/GithubRepository";
 
 const Home = (): JSX.Element => {
   let Idade = new Date().getFullYear() - new Date("2002-07-19").getFullYear();
@@ -17,31 +20,78 @@ const Home = (): JSX.Element => {
     new Date().getMonth() - new Date("2020-01-25").getMonth();
   const title = useRef<HTMLDivElement>(null);
   const cardFirst = useRef<HTMLDivElement>(null);
+  const titleSecondSection = useRef<HTMLDivElement>(null);
+  const [repositories, setRepositories] = useState<GithubRepositoryInterface[]>(
+    []
+  );
 
-  window.addEventListener("scroll", () => {
-    let windowPosition = window.scrollY;
-  });
+  const getAllRepos = async () => {
+    const data = await GitHubService.getAllRepositories();
+    return setRepositories(data.data);
+  };
 
-  useLayoutEffect(() => {
-    window.addEventListener("load", () => {
-      ScrollReveal().reveal(title.current!, {
-        duration: 1000,
-        delay: 100,
-        easing: "ease-in-out",
-        reset: false,
-        origin: "top",
-        distance: "10px",
-      });
-      ScrollReveal().reveal(cardFirst.current!, {
-        duration: 1000,
-        delay: 300,
-        easing: "ease-in-out",
-        reset: false,
-        origin: "top",
-        distance: "20px",
-      });
-    });
-  }, [title.current]);
+  useEffect(() => {
+    getAllRepos();
+    const animateWorksContainer = async () => {
+      if (titleSecondSection.current) {
+        const scrollReveal = (await import("scrollreveal")).default;
+        scrollReveal().reveal(titleSecondSection.current, {
+          duration: 1000,
+          delay: 300,
+          easing: "ease-in-out",
+          reset: false,
+        });
+        scrollReveal().reveal(".card1-second-section", {
+          duration: 1000,
+          delay: 500,
+          easing: "ease-in-out",
+          reset: false,
+          origin: "bottom",
+          distance: "10px",
+        });
+        scrollReveal().reveal(".card2-second-section", {
+          duration: 1100,
+          delay: 900,
+          easing: "ease-in-out",
+          reset: false,
+          origin: "bottom",
+          distance: "10px",
+        });
+        scrollReveal().reveal(".more-projects", {
+          duration: 1200,
+          delay: 1000,
+          easing: "ease-in-out",
+          reset: false,
+          origin: "bottom",
+          distance: "10px",
+        });
+        ScrollReveal().reveal(title.current!, {
+          duration: 1000,
+          delay: 100,
+          easing: "ease-in-out",
+          reset: false,
+          origin: "top",
+          distance: "10px",
+        });
+        ScrollReveal().reveal(cardFirst.current!, {
+          duration: 1000,
+          delay: 300,
+          easing: "ease-in-out",
+          reset: false,
+          origin: "top",
+          distance: "20px",
+        });
+      }
+    };
+    animateWorksContainer();
+  }, []);
+
+  const githubFinder = repositories.filter(
+    (item) => item.name === "githubfinder"
+  );
+  const financialControl = repositories.filter(
+    (item) => item.name === "FinancialControl"
+  );
 
   return (
     <Styled.Container>
@@ -68,9 +118,9 @@ const Home = (): JSX.Element => {
                   Navegue pelo portfolio para conhecer mais <br /> sobre meu
                   trabalho
                 </p>
-                <Link to="/" className="next-section">
+                <a href="#projetos" className="next-section">
                   <FiArrowDown />
-                </Link>
+                </a>
               </div>
             </div>
           </Card>
@@ -94,21 +144,70 @@ const Home = (): JSX.Element => {
         </div>
       </Styled.FirstSection>
       <Styled.SecondSection>
-        <div className="header-second-section">
+        <div
+          className="header-second-section"
+          ref={titleSecondSection}
+          id="projetos"
+        >
           <p>Projetos</p>
           <h2>Projetos Recentes</h2>
         </div>
         <div className="recent-projects">
-          <Card boxShadow={"1rem 1rem 0rem #FF2C52"}>
+          <Card
+            boxShadow={"1rem 1rem 0rem #FF2C52"}
+            className="card1-second-section"
+          >
             <div className="box-project">
-              primeiro
+              {githubFinder &&
+                githubFinder.map((item) => (
+                  <>
+                    <div className="content">
+                      <p className="title-project">Github Finder</p>
+                      <p className="desc-project">
+                        Página web onde é possivel pesquisar usuários do github
+                        e ver seus dados e repósitorios. Denvolvido em React JS
+                        + Styled Components.
+                      </p>
+                    </div>
+                    <div className="link-repo">
+                      <a href={item.html_url} target="_blank">
+                        <FiArrowRight />
+                      </a>
+                    </div>
+                  </>
+                ))}
             </div>
           </Card>
-          <Card boxShadow={"1rem 1rem 0rem #1472FF"}>
+          <Card
+            boxShadow={"1rem 1rem 0rem #1472FF"}
+            className="card2-second-section"
+          >
             <div className="box-project">
-              segundo
+              {financialControl &&
+                financialControl.map((item) => (
+                  <>
+                    <div className="content">
+                      <p className="title-project">Financial Control</p>
+                      <p className="desc-project">
+                        Página web onde é possivel cadastrar despesas e
+                        receitas, e efetuar o controle financeiro. Denvolvido em
+                        Next JS + Styled Components + Typescrpit.
+                      </p>
+                    </div>
+                    <div className="link-repo">
+                      <a href={item.html_url} target="_blank">
+                        <FiArrowRight />
+                      </a>
+                    </div>
+                  </>
+                ))}
             </div>
           </Card>
+        </div>
+        <div className="more-projects">
+          <Link to="/projetos">
+            <p>Mais</p> <FiArrowRight />
+          </Link>
         </div>
       </Styled.SecondSection>
     </Styled.Container>
