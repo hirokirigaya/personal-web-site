@@ -9,6 +9,7 @@ import {
 } from "react-icons/fi";
 import * as Styled from "./styles";
 import { Link } from "react-router-dom";
+import ScrollReveal from "scrollreveal";
 
 const Home = (): JSX.Element => {
   let Idade = new Date().getFullYear() - new Date("2002-07-19").getFullYear();
@@ -23,8 +24,22 @@ const Home = (): JSX.Element => {
 
   useLayoutEffect(() => {
     window.addEventListener("load", () => {
-      title.current!.style.animation = `openAnimation 1.5s ease forwards .3s`;
-      cardFirst.current!.style.animation = `openAnimation 1.9s ease forwards .7s`;
+      ScrollReveal().reveal(title.current!, {
+        duration: 1000,
+        delay: 100,
+        easing: "ease-in-out",
+        reset: false,
+        origin: "top",
+        distance: "10px",
+      });
+      ScrollReveal().reveal(cardFirst.current!, {
+        duration: 1000,
+        delay: 300,
+        easing: "ease-in-out",
+        reset: false,
+        origin: "top",
+        distance: "20px",
+      });
     });
   }, [title.current]);
 
@@ -40,7 +55,7 @@ const Home = (): JSX.Element => {
               Front End
             </h1>
           </div>
-          <Card boxShadow={"1rem 1rem 0rem #FFC700"} ref={cardFirst} opacity={0}>
+          <Card boxShadow={"1rem 1rem 0rem #FFC700"} ref={cardFirst}>
             <div className="infos">
               <p className="about-me">
                 Olá possuo {Idade} anos e desenvolvo aplicações Web há{" "}
@@ -78,6 +93,24 @@ const Home = (): JSX.Element => {
           </a>
         </div>
       </Styled.FirstSection>
+      <Styled.SecondSection>
+        <div className="header-second-section">
+          <p>Projetos</p>
+          <h2>Projetos Recentes</h2>
+        </div>
+        <div className="recent-projects">
+          <Card boxShadow={"1rem 1rem 0rem #FF2C52"}>
+            <div className="box-project">
+              primeiro
+            </div>
+          </Card>
+          <Card boxShadow={"1rem 1rem 0rem #1472FF"}>
+            <div className="box-project">
+              segundo
+            </div>
+          </Card>
+        </div>
+      </Styled.SecondSection>
     </Styled.Container>
   );
 };

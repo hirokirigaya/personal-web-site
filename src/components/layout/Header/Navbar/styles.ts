@@ -53,6 +53,7 @@ export const ButtonNav = styled.div`
 
 export const ContainerNavgation = styled.div`
   position: fixed;
+  z-index: 887;
   top: -100%;
   left: 0;
   visibility: hidden;

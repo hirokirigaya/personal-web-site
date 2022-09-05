@@ -7,6 +7,8 @@ export const Container = styled.main`
   background-image: url("/images/line.svg");
   background-repeat: no-repeat;
   background-size: cover;
+  gap: 6rem;
+  margin-bottom: 2rem;
 `;
 
 export const FirstSection = styled.section`
@@ -16,12 +18,12 @@ export const FirstSection = styled.section`
   .container-main-first {
     max-width: 1120px;
     margin: 5rem auto 0 auto;
-    display: grid;
+    display: flex;
     width: 100%;
-    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+    padding: 0 10px;
 
     .title-first-section {
-      opacity: 0;
       display: flex;
       align-items: center;
 
@@ -92,6 +94,42 @@ export const FirstSection = styled.section`
           color: ${({ theme }) => theme.colors.text.secondary};
         }
       }
+    }
+  }
+`;
+
+export const SecondSection = styled.section`
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+
+  .header-second-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    p {
+      font-size: ${({ theme }) => theme.fontSizes["2xl"]};
+      color: ${({ theme }) => theme.colors.text.secondary};
+    }
+    h2 {
+      font-size: ${({ theme }) => theme.fontSizes["3xl"]};
+      color: ${({ theme }) => theme.colors.text.primary};
+    }
+  }
+
+  .recent-projects {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .box-project {
+      width: 440px;
     }
   }
 `;
