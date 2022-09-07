@@ -153,7 +153,7 @@ const Home = (): JSX.Element => {
           <a href="https://github.com/hirokirigaya" target="_blank">
             <FiGithub />
           </a>
-          <a href="/" target="_blank">
+          <a href="https://www.youtube.com/channel/UCGanhUB_aetD16UBbUJ9n6g" target="_blank">
             <FiYoutube />
           </a>
           <a href="mailto:danielferreiradeveloper@gmail.com">
@@ -243,7 +243,7 @@ const Home = (): JSX.Element => {
 
         <div className="about-me">
           <p>
-            Meu nome é Daniel Ferreira, tenho {Idade} anos, nascido em Brasilia, desde pequeno sempre tive uma imensa paixão por tecnologia, principalmente informática e robótica, ao conhecer o desenvolvimento web resolvi pesquisar e aprender mais sobre, e acabou se tornando minha nova paixão, pois o fato de poder programar algo do zero e ver o resultado final é algo que me deixa muito feliz. Além de usar meus conhecimentos para ajudar o próximo venho buscado ajudar os programadores nas comunidades e no meu canal do yotube <a href="https://www.youtube.com/channel/UCGanhUB_aetD16UBbUJ9n6g">Daniel Ferreira</a>.
+            Meu nome é Daniel Ferreira, tenho {Idade} anos, nascido em Brasilia, desde pequeno sempre tive uma imensa paixão por tecnologia, principalmente informática e robótica, ao conhecer o desenvolvimento web resolvi pesquisar e aprender mais sobre, e acabou se tornando minha nova paixão, pois o fato de poder programar algo do zero e ver o resultado final é algo que me deixa muito feliz. Além de usar meus conhecimentos para ajudar o próximo venho buscado ajudar os programadores nas comunidades e no meu canal do youtube <a href="https://www.youtube.com/channel/UCGanhUB_aetD16UBbUJ9n6g">Daniel Ferreira</a>.
           </p>
           <p>
             Atualmente sou desenvolvedor web front end e estou cursando o 2° semestre de Análise e Desenvolvimento de Sistemas na Universidade Anhanguera. Tenho como objetivo me tornar um desenvolvedor full stack, e estou sempre buscando novos conhecimentos para alcançar o que almejo. Atualmente desenvolvo em Javascript/TS e como principal framework utilizo React JS, tenhos conhecimentos em estilizadores css, scss, styled-components, desenvolvimento de interfaces, mobile first, responsividade, consumo de api's, git, github, entre outros.
