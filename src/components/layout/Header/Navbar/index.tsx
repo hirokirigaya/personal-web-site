@@ -29,7 +29,7 @@ const Navbar = (): JSX.Element => {
         <h1>
           <Link to="/">DAN</Link>
         </h1>
-        <Styled.ButtonNav onClick={handleClickToggleMenu}>
+        <Styled.ButtonNav onClick={handleClickToggleMenu} tabIndex={2}>
           <span></span>
           <span></span>
           <span></span>
@@ -46,7 +46,7 @@ const Navbar = (): JSX.Element => {
                   activeLink === item.path ? "navbar-link on" : "navbar-link"
                 }
               >
-                <Link to={item.path}>{item.name}</Link>
+                {item.name === "Contato" ? (<a href={item.path} key={item.id}>{item.name}</a>) : (<Link to={item.path} key={item.id}>{item.name}</Link>)}
               </li>
             );
           })}

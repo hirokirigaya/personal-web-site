@@ -11,8 +11,9 @@ import {
 import * as Styled from "./styles";
 import { Link } from "react-router-dom";
 import ScrollReveal from "scrollreveal";
-import GitHubService from "../../services/GitHubService";
 import { GithubRepositoryInterface } from "../../interfaces/GithubRepository";
+import GitHubService from "../../services/GithubService";
+import { ContainerInfosHeader } from "../../components/reusable/containerInfos";
 
 const Home = (): JSX.Element => {
   let Idade = new Date().getFullYear() - new Date("2002-07-19").getFullYear();
@@ -21,6 +22,7 @@ const Home = (): JSX.Element => {
   const title = useRef<HTMLDivElement>(null);
   const cardFirst = useRef<HTMLDivElement>(null);
   const titleSecondSection = useRef<HTMLDivElement>(null);
+  const titleThirdSection = useRef<HTMLDivElement>(null);
   const [repositories, setRepositories] = useState<GithubRepositoryInterface[]>(
     []
   );
@@ -57,6 +59,20 @@ const Home = (): JSX.Element => {
           origin: "bottom",
           distance: "10px",
         });
+        scrollReveal().reveal(titleThirdSection.current!, {
+          duration: 1000,
+          delay: 300,
+          easing: "ease-in-out",
+          reset: false,
+        });
+        scrollReveal().reveal(".about-me", {
+          duration: 1000,
+          delay: 500,
+          easing: "ease-in-out",
+          reset: false,
+          origin: "bottom",
+          distance: "10px",
+        });
         scrollReveal().reveal(".more-projects", {
           duration: 1200,
           delay: 1000,
@@ -74,6 +90,14 @@ const Home = (): JSX.Element => {
           distance: "10px",
         });
         ScrollReveal().reveal(cardFirst.current!, {
+          duration: 1000,
+          delay: 300,
+          easing: "ease-in-out",
+          reset: false,
+          origin: "top",
+          distance: "20px",
+        });
+        ScrollReveal().reveal(".icons-networks", {
           duration: 1000,
           delay: 300,
           easing: "ease-in-out",
@@ -144,14 +168,13 @@ const Home = (): JSX.Element => {
         </div>
       </Styled.FirstSection>
       <Styled.SecondSection>
-        <div
-          className="header-second-section"
+        <ContainerInfosHeader
           ref={titleSecondSection}
           id="projetos"
         >
           <p>Projetos</p>
           <h2>Projetos Recentes</h2>
-        </div>
+        </ContainerInfosHeader>
         <div className="recent-projects">
           <Card
             boxShadow={"1rem 1rem 0rem #FF2C52"}
@@ -160,8 +183,8 @@ const Home = (): JSX.Element => {
             <div className="box-project">
               {githubFinder &&
                 githubFinder.map((item) => (
-                  <>
-                    <div className="content">
+                  <div key={item.id} className="item">
+                    <div className="content" >
                       <p className="title-project">Github Finder</p>
                       <p className="desc-project">
                         Página web onde é possivel pesquisar usuários do github
@@ -174,7 +197,7 @@ const Home = (): JSX.Element => {
                         <FiArrowRight />
                       </a>
                     </div>
-                  </>
+                  </div>
                 ))}
             </div>
           </Card>
@@ -185,7 +208,7 @@ const Home = (): JSX.Element => {
             <div className="box-project">
               {financialControl &&
                 financialControl.map((item) => (
-                  <>
+                  <div key={item.id} className="item">
                     <div className="content">
                       <p className="title-project">Financial Control</p>
                       <p className="desc-project">
@@ -194,12 +217,12 @@ const Home = (): JSX.Element => {
                         Next JS + Styled Components + Typescrpit.
                       </p>
                     </div>
-                    <div className="link-repo">
+                    <div className="link-repo" >
                       <a href={item.html_url} target="_blank">
                         <FiArrowRight />
                       </a>
                     </div>
-                  </>
+                  </div>
                 ))}
             </div>
           </Card>
@@ -210,6 +233,23 @@ const Home = (): JSX.Element => {
           </Link>
         </div>
       </Styled.SecondSection>
+      <Styled.ThirdSection>
+        <ContainerInfosHeader
+          ref={titleThirdSection}
+        >
+          <p>Sobre</p>
+          <h2>Quem sou?</h2>
+        </ContainerInfosHeader>
+
+        <div className="about-me">
+          <p>
+            Meu nome é Daniel Ferreira, tenho {Idade} anos, nascido em Brasilia, desde pequeno sempre tive uma imensa paixão por tecnologia, principalmente informática e robótica, ao conhecer o desenvolvimento web resolvi pesquisar e aprender mais sobre, e acabou se tornando minha nova paixão, pois o fato de poder programar algo do zero e ver o resultado final é algo que me deixa muito feliz. Além de usar meus conhecimentos para ajudar o próximo venho buscado ajudar os programadores nas comunidades e no meu canal do yotube <a href="https://www.youtube.com/channel/UCGanhUB_aetD16UBbUJ9n6g">Daniel Ferreira</a>.
+          </p>
+          <p>
+            Atualmente sou desenvolvedor web front end e estou cursando o 2° semestre de Análise e Desenvolvimento de Sistemas na Universidade Anhanguera. Tenho como objetivo me tornar um desenvolvedor full stack, e estou sempre buscando novos conhecimentos para alcançar o que almejo. Atualmente desenvolvo em Javascript/TS e como principal framework utilizo React JS, tenhos conhecimentos em estilizadores css, scss, styled-components, desenvolvimento de interfaces, mobile first, responsividade, consumo de api's, git, github, entre outros.
+          </p>
+        </div>
+      </Styled.ThirdSection>
     </Styled.Container>
   );
 };
