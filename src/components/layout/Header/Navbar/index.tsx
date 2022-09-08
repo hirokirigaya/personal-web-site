@@ -23,11 +23,21 @@ const Navbar = (): JSX.Element => {
     animateLinks();
   };
 
+  const handleScrollToTop = () => {
+    setOpen(!open);
+    animateLinks();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <Styled.Container>
         <h1>
-          <Link to="/">DAN</Link>
+          <a href="/">DAN</a>
         </h1>
         <Styled.ButtonNav onClick={handleClickToggleMenu} tabIndex={2}>
           <span></span>
@@ -41,12 +51,20 @@ const Navbar = (): JSX.Element => {
             return (
               <li
                 key={item.id}
-                onClick={handleClickToggleMenu}
+                onClick={handleScrollToTop}
                 className={
                   activeLink === item.path ? "navbar-link on" : "navbar-link"
                 }
               >
-                {item.name === "Contato" ? (<a href={item.path} key={item.id}>{item.name}</a>) : (<Link to={item.path} key={item.id}>{item.name}</Link>)}
+                {item.name === "Contato" ? (
+                  <a href={item.path} key={item.id}>
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link to={item.path} key={item.id}>
+                    {item.name}
+                  </Link>
+                )}
               </li>
             );
           })}

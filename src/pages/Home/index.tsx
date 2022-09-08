@@ -228,9 +228,9 @@ const Home = (): JSX.Element => {
           </Card>
         </div>
         <div className="more-projects">
-          <Link to="/projetos">
+          <a href="/projetos">
             <p>Mais</p> <FiArrowRight />
-          </Link>
+          </a>
         </div>
       </Styled.SecondSection>
       <Styled.ThirdSection>
