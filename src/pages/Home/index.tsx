@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Card } from "../../components/reusable/card";
 import {
   FiArrowDown,
@@ -10,33 +10,35 @@ import {
 } from "react-icons/fi";
 import * as Styled from "./styles";
 import ScrollReveal from "scrollreveal";
-import { GithubRepositoryInterface } from "../../interfaces/GithubRepository";
-import GitHubService from "../../services/GithubService";
 import { ContainerInfosHeader } from "../../components/reusable/containerInfos";
 import moment from "moment";
-import 'moment/dist/locale/pt-br'
+import "moment/dist/locale/pt-br";
 moment.locale("pt-br");
 
-const startedPromation = "2022-01-25";
+const startedProgamation = "2022-01-25";
 
 const Home = (): JSX.Element => {
-  let Idade = new Date().getFullYear() - new Date("2002-07-19").getFullYear();
-  let ProgamationTime = moment(startedPromation).fromNow(true);
+  const age = moment().diff("2002-07-18", "years");
+  const progamationDate = moment()
+    .diff(startedProgamation, "years", true)
+    .toFixed(1);
+  const programationTimeYears = progamationDate.split(".")[0];
+  const programationTimeMonths = progamationDate.split(".")[1];
+  const progamationTime = `${
+    Number(programationTimeYears) > 1
+      ? `${programationTimeYears} anos`
+      : `${programationTimeYears} ano`
+  } e ${
+    Number(programationTimeMonths) > 1
+      ? `${programationTimeMonths} meses`
+      : `${programationTimeMonths} mês`
+  }`;
   const title = useRef<HTMLDivElement>(null);
   const cardFirst = useRef<HTMLDivElement>(null);
   const titleSecondSection = useRef<HTMLDivElement>(null);
   const titleThirdSection = useRef<HTMLDivElement>(null);
-  const [repositories, setRepositories] = useState<GithubRepositoryInterface[]>(
-    []
-  );
-
-  const getAllRepos = async () => {
-    const data = await GitHubService.getAllRepositories();
-    return setRepositories(data.data);
-  };
 
   useEffect(() => {
-    getAllRepos();
     const animateWorksContainer = async () => {
       if (titleSecondSection.current) {
         const scrollReveal = (await import("scrollreveal")).default;
@@ -113,13 +115,6 @@ const Home = (): JSX.Element => {
     animateWorksContainer();
   }, []);
 
-  const githubFinder = repositories.filter(
-    (item) => item.name === "githubfinder"
-  );
-  const financialControl = repositories.filter(
-    (item) => item.name === "FinancialControl"
-  );
-
   return (
     <Styled.Container>
       <Styled.FirstSection>
@@ -129,15 +124,16 @@ const Home = (): JSX.Element => {
               <span>Daniel Ferreira</span>
               <br />
               Desenvolvedor <br />
-              Front End
+              de Software
             </h1>
           </div>
           <Card boxShadow={"1rem 1rem 0rem #FFC700"} ref={cardFirst}>
             <div className="infos">
               <p className="about-me">
-                Olá possuo {Idade} anos e desenvolvo aplicações Web há{" "}
-                {ProgamationTime}, sempre visando a melhor experiência para os
-                usuários.
+                Olá possuo {age} anos e sou desenvolvedor há {progamationTime},
+                trabalhando diretamente em fábricas de software, tendo
+                experiência em desenvolvimento web e mobile, sempre visando a
+                melhor experiência para os usuários.
               </p>
 
               <div className="navgation-personal-web">
@@ -153,21 +149,27 @@ const Home = (): JSX.Element => {
           </Card>
         </div>
         <div className="icons-networks">
-          <a href="https://github.com/hirokirigaya" target="_blank">
+          <a
+            href="https://github.com/hirokirigaya"
+            target="_blank"
+            title="Github"
+          >
             <FiGithub />
           </a>
           <a
             href="https://www.youtube.com/channel/UCGanhUB_aetD16UBbUJ9n6g"
             target="_blank"
+            title="Youtube"
           >
             <FiYoutube />
           </a>
-          <a href="mailto:danielferreiradeveloper@gmail.com">
+          <a href="mailto:danielferreiradeveloper@gmail.com" title="E-mail">
             <FiMail />
           </a>
           <a
             href="https://www.linkedin.com/in/daniel-junio-0832481bb/"
             target="_blank"
+            title="Linkedin"
           >
             <FiLinkedin />
           </a>
@@ -184,24 +186,35 @@ const Home = (): JSX.Element => {
             className="card1-second-section"
           >
             <div className="box-project">
-              {githubFinder &&
-                githubFinder.map((item) => (
-                  <div key={item.id} className="item">
-                    <div className="content">
-                      <p className="title-project">Github Finder</p>
-                      <p className="desc-project">
-                        Página web onde é possivel pesquisar usuários do github
-                        e ver seus dados e repósitorios. Denvolvido em React JS
-                        + Styled Components.
-                      </p>
-                    </div>
-                    <div className="link-repo">
-                      <a href={item.html_url} target="_blank">
-                        <FiArrowRight />
-                      </a>
-                    </div>
-                  </div>
-                ))}
+              <div className="item">
+                <div className="content">
+                  <p className="title-project">Github Finder</p>
+                  <p className="desc-project">
+                    Página web onde é possivel pesquisar usuários do github e
+                    ver seus dados e repósitorios. Densevolvido em React JS +
+                    Styled Components. Clique aqui para ver o{" "}
+                    <a
+                      href="https://github.com/hirokirigaya/githubfinder"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Repositório do projeto"
+                      className="link-repo"
+                    >
+                      repositório
+                    </a>
+                  </p>
+                </div>
+                <div className="link-website">
+                  <a
+                    href={"https://githubfinder-five.vercel.app/"}
+                    target="_blank"
+                    title="Acessar site do projeto Github Finder"
+                    rel="noopener noreferrer"
+                  >
+                    <FiArrowRight />
+                  </a>
+                </div>
+              </div>
             </div>
           </Card>
           <Card
@@ -209,24 +222,35 @@ const Home = (): JSX.Element => {
             className="card2-second-section"
           >
             <div className="box-project">
-              {financialControl &&
-                financialControl.map((item) => (
-                  <div key={item.id} className="item">
-                    <div className="content">
-                      <p className="title-project">Financial Control</p>
-                      <p className="desc-project">
-                        Página web onde é possivel cadastrar despesas e
-                        receitas, e efetuar o controle financeiro. Denvolvido em
-                        Next JS + Styled Components + Typescrpit.
-                      </p>
-                    </div>
-                    <div className="link-repo">
-                      <a href={item.html_url} target="_blank">
-                        <FiArrowRight />
-                      </a>
-                    </div>
-                  </div>
-                ))}
+              <div className="item">
+                <div className="content">
+                  <p className="title-project">Sneakers V2</p>
+                  <p className="desc-project">
+                    Página Web, e-ccomerce de tênis, sendo um dos primeiros
+                    sites que desenvolvi o backend. Densevolvido em Next JS +
+                    Styled Components + Typescrpit. Clique aqui para ver o{" "}
+                    <a
+                      href="https://github.com/hirokirigaya/sneakers-v2"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Repositório do projeto"
+                      className="link-repo"
+                    >
+                      repositório
+                    </a>
+                  </p>
+                </div>
+                <div className="link-website">
+                  <a
+                    href={"https://sneakers-v2.vercel.app/"}
+                    target="_blank"
+                    title="Acessar site do projeto Sneakers V2"
+                    rel="noopener noreferrer"
+                  >
+                    <FiArrowRight />
+                  </a>
+                </div>
+              </div>
             </div>
           </Card>
         </div>
@@ -244,28 +268,42 @@ const Home = (): JSX.Element => {
 
         <div className="about-me">
           <p>
-            Meu nome é Daniel Ferreira, tenho {Idade} anos, nascido em Brasilia,
+            Meu nome é Daniel Ferreira, tenho {age} anos, nascido em Brasília,
             desde pequeno sempre tive uma imensa paixão por tecnologia,
             principalmente informática e robótica, ao conhecer o desenvolvimento
-            web resolvi pesquisar e aprender mais sobre, e acabou se tornando
-            minha nova paixão, pois o fato de poder programar algo do zero e ver
-            o resultado final é algo que me deixa muito feliz. Além de usar meus
-            conhecimentos para ajudar o próximo venho buscado ajudar os
-            programadores nas comunidades e no meu canal do youtube{" "}
-            <a href="https://www.youtube.com/channel/UCGanhUB_aetD16UBbUJ9n6g">
+            web, pesquisando e aprendendo mais sobre, acabou se tornando minha
+            nova paixão, pois o fato de poder programar algo do zero, que pode
+            ser utilizado para ajudar pessoas e automatizar processos como
+            resultado final é algo muito satisfatório e prazeroso. Além disso,
+            busco usar meus conhecimentos para ajudar o próximo, auxiliando os
+            programadores em comunidades e compartilhando conhecimento no meu
+            canal do youtube{" "}
+            <a
+              href="https://www.youtube.com/channel/UCGanhUB_aetD16UBbUJ9n6g"
+              title="Canal do Youtube"
+            >
               Daniel Ferreira
             </a>
             .
           </p>
           <p>
-            Atualmente sou desenvolvedor web front end e estou cursando o 2°
-            semestre de Análise e Desenvolvimento de Sistemas na Universidade
-            Anhanguera. Tenho como objetivo me tornar um desenvolvedor full
-            stack, e estou sempre buscando novos conhecimentos para alcançar o
-            que almejo. Atualmente desenvolvo em Javascript/TS e como principal
-            framework utilizo React JS, tenhos conhecimentos em estilizadores
-            css, scss, styled-components, desenvolvimento de interfaces, mobile
-            first, responsividade, consumo de api's, git, github, entre outros.
+            Atualmente sou desenvolvedor web e mobile, especialista front end e
+            estou cursando o 4° semestre de Análise e Desenvolvimento de
+            Sistemas na Universidade Anhanguera. Tenho como objetivo me tornar
+            um desenvolvedor full stack, estou sempre buscando novos
+            conhecimentos para alcançar o que almejo. No momento desenvolvo em
+            Javascript/TS; como principal framework web utilizo ReactJS/NextJS;
+            mobile React Native; no desenvolvimento back-end utilizo NodeJS e
+            venho estudando Java buscando me especializar cada vez mais. Clique
+            aqui para baixar meu{" "}
+            <a
+              href="/daniel_curriculo.pdf"
+              title="Currículo Daniel Ferreira"
+              download
+            >
+              currículo
+            </a>
+            .
           </p>
         </div>
       </Styled.ThirdSection>

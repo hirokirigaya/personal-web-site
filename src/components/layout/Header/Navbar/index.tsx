@@ -37,9 +37,9 @@ const Navbar = (): JSX.Element => {
     <>
       <Styled.Container>
         <h1>
-          <a href="/">DAN</a>
+          <a href="/" title="Texto DAN com redirecionamento para Home">DAN</a>
         </h1>
-        <Styled.ButtonNav onClick={handleClickToggleMenu} tabIndex={2}>
+        <Styled.ButtonNav onClick={handleClickToggleMenu} title="Botão menu">
           <span></span>
           <span></span>
           <span></span>
@@ -56,12 +56,17 @@ const Navbar = (): JSX.Element => {
                   activeLink === item.path ? "navbar-link on" : "navbar-link"
                 }
               >
-                {item.name === "Contato" ? (
-                  <a href={item.path} key={item.id}>
+                {item.id === 4 || item.id === 5 ? (
+                  <a
+                    href={item.path}
+                    key={item.id}
+                    download={item.id === 5}
+                    title={item.name}
+                  >
                     {item.name}
                   </a>
                 ) : (
-                  <Link to={item.path} key={item.id}>
+                  <Link to={item.path} key={item.id} title={item.name}>
                     {item.name}
                   </Link>
                 )}
@@ -94,6 +99,11 @@ const navLinks = [
     id: 4,
     name: "Contato",
     path: "#contato",
+  },
+  {
+    id: 5,
+    name: "Currículo",
+    path: "/daniel_curriculo.pdf",
   },
 ];
 

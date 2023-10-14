@@ -25,7 +25,7 @@ export const Container = styled.header`
     }
   }
 `;
-export const ButtonNav = styled.div`
+export const ButtonNav = styled.button`
   display: flex;
   gap: 0.2rem;
   cursor: pointer;
@@ -36,6 +36,8 @@ export const ButtonNav = styled.div`
   transition: all 200ms ease-in-out;
   z-index: 999;
   mix-blend-mode: difference;
+  border: none;
+  background-color: transparent;
 
   &:hover {
     gap: 0;

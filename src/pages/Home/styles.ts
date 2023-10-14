@@ -172,7 +172,19 @@ export const SecondSection = styled.section`
             color: ${({ theme }) => theme.colors.text.secondary};
           }
         }
+
         .link-repo {
+          font-size: ${({ theme }) => theme.fontSizes["sm"]};
+          color: ${({ theme }) => theme.colors.text.secondary};
+          transition: all 200ms ease-in-out;
+
+          &:hover {
+            color: ${({ theme }) => theme.colors.text.tertiary};
+            filter: brightness(0.8);
+          }
+        }
+
+        .link-website {
           display: flex;
           width: 100%;
           justify-content: flex-end;
