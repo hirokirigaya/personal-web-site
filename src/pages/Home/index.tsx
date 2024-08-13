@@ -130,10 +130,9 @@ const Home = (): JSX.Element => {
           <Card boxShadow={"1rem 1rem 0rem #FFC700"} ref={cardFirst}>
             <div className="infos">
               <p className="about-me">
-                Olá possuo {age} anos e sou desenvolvedor há {progamationTime},
-                trabalhando diretamente em fábricas de software, tendo
-                experiência em desenvolvimento web e mobile, sempre visando a
-                melhor experiência para os usuários.
+                Desenvolvedor há {progamationTime}, trabalhando diretamente em
+                fábricas de software, tendo experiência em desenvolvimento web e
+                mobile, sempre visando a melhor experiência para os usuários.
               </p>
 
               <div className="navgation-personal-web">
@@ -287,15 +286,14 @@ const Home = (): JSX.Element => {
             .
           </p>
           <p>
-            Atualmente sou desenvolvedor web e mobile, especialista front end e
-            estou cursando o 4° semestre de Análise e Desenvolvimento de
-            Sistemas na Universidade Anhanguera. Tenho como objetivo me tornar
-            um desenvolvedor full stack, estou sempre buscando novos
-            conhecimentos para alcançar o que almejo. No momento desenvolvo em
-            Javascript/TS; como principal framework web utilizo ReactJS/NextJS;
-            mobile React Native; no desenvolvimento back-end utilizo NodeJS e
-            venho estudando Java buscando me especializar cada vez mais. Clique
-            aqui para baixar meu{" "}
+            Atualmente sou desenvolvedor web e mobile, especialista front-end,
+            formado em Análise e Desenvolvimento de Sistemas na Universidade
+            Anhanguera. Tenho como objetivo me tornar um desenvolvedor full
+            stack, estou sempre buscando novos conhecimentos para alcançar o que
+            almejo. No momento desenvolvo em Javascript/TS; como principal
+            framework web utilizo ReactJS/NextJS; mobile React Native; no
+            desenvolvimento back-end utilizo NodeJS e venho estudando Java
+            buscando me especializar cada vez mais. Clique aqui para baixar meu{" "}
             <a
               href="/daniel_curriculo.pdf"
               title="Currículo Daniel Ferreira"
